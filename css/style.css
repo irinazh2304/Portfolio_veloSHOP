@@ -1,0 +1,444 @@
+:root {
+    --black-color: #263238;
+    --base-color: #baef00;
+    --base-color-hover: #d9ff56;
+    --base-color-active: #a3d200;
+    --border-color: #e3e3e3;
+    --placeholder-color: #8d8d8d;
+    --price-color: #6c6c6c;
+    --transition-duration: 0.3s;
+}
+
+html {
+    box-sizing: border-box; /*чтобы padding работали правильно*/
+}
+*,
+::after,
+::before {
+    box-sizing: inherit; /*inherit-это чтобы box-sizing наследовали от родителя*/
+}
+body {
+    font-size: 16px; /*шрифт по умолчанию*/
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /*обнуление всех margin по умолчанию, если его размер не указан*/
+    color: var(--black-color);
+    background-color: white;
+}
+img {
+    max-width: 100%; /*чтобы картинка не выходила за пределы экрана*/
+}
+a {
+    text-decoration: none; /*чтобы не было нижнего подчеркивания по умолчанию*/
+}
+
+/*--------------ссылка--------------*/
+
+.default-link {
+    color: var(--black-color);
+    text-decoration: underline; /*Нижнее подчеркивание*/
+    transition: color var(--transition-duration), background-color var(--transition-duration); /*скорость изменения цвета*/
+}
+.default-link:focus-visible /*Изменение цвета при нажатии (visible-чтобы срабатывало при нажатии tab, а не мыши)*/ {
+    outline: none; /*убираем прямоугольную рамку-обводку*/
+    background-color: var(--base-color);
+}
+.default-link:hover /*Изменение цвета при наведении мыши*/ {
+    color: var(--base-color-hover);
+}
+.default-link:active /*Изменение цвета между щелчком и нажатием*/ {
+    color: var(--base-color-active);
+}
+
+/*--------------кнопка--------------*/
+
+.default-btn {
+    display: inline-block;
+    color: var(--black-color);
+    padding: 11px 47px;
+    border-radius: 12px;
+    background-color: var(--base-color);
+    border: none;
+    outline: 1px solid transparent; /*рамка у кнопки толщиной 1px (при transparent она есть, но она прозрачная, чтобы появлялось при focus*/
+    outline-offset: 2px; /*отступ рамки у кнопки толщиной 2px*/
+    transition: outline-color var(--transition-duration), background-color var(--transition-duration);
+    cursor: pointer; /*курсор в виде руки*/
+}
+.default-btn:focus-visible {
+    outline-color: var(--base-color); /*появление рамки такого цвета при нажатии*/
+}
+.default-btn:hover {
+    background-color: var(--base-color-hover);
+}
+.default-btn:active {
+    background-color: var(--base-color-active);
+}
+
+/*--------------текстовое поле--------------*/
+
+.text-field {
+    padding: 11px 16px 11px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: border-color var(--transition-duration);
+    outline: none; /*убираем черную рамку-обводку, которая идет по умолчанию*/
+}
+.text-field::placeholder {
+    color: var(--placeholder-color);
+}
+.text-field:focus {
+    border-color: var(--base-color);
+}
+
+/*--------------Стилизация подзаголовка--------------*/
+
+.subtitle {
+    margin: 0;
+    text-align: center;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+/*--------------Стилизация логотипа--------------*/
+
+.logo {
+    width: 154px; /*так же добавили width=154 в html в пунт логотипа*/
+    display: block; /*по умолчанию у картинки есть нижний отступ, этой строкой мы его убираем*/
+}
+
+/*--------------Стилизация меню--------------*/
+
+.menu__list {
+    display: flex;
+    align-items: center;
+    gap: 50px; /*отступы между колонками*/
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.menu__link {
+    color: white;
+    outline: none;
+    transition: color var(--transition-duration), background-color var(--transition-duration); /*скорость изменения цвета*/
+}
+.menu__link:focus-visible {
+    outline: none;
+    color: var(--black-color);
+    background-color: var(--base-color);
+}
+.menu__link:hover {
+    color: var(--base-color-hover);
+}
+.menu__link:active {
+    color: var(--base-color-active);
+}
+
+/*--------------Форма обратной связи (строка с кнопкой)--------------*/
+
+.callback-form {
+    display: flex;
+    gap: 16px;
+}
+.callback-form__inp {
+    flex-basis: 288px; /*ширина строки для ввода данных*/
+}
+
+/*--------------Блок карточка товара (маленькая)--------------*/
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid var(--border-color); /*рамка толщиной 1px, стиль solid*/
+}
+.product-card__img {
+    display: block;
+    flex-shrink: 0; /*чтобы изображение не сжималось*/
+    width: 100%;
+    height: 180px;
+    border-top-right-radius: 12px; /*радиус скругления верхний правый угол*/
+    border-top-left-radius: 12px; /*радиус скругления верхний левый угол*/
+    object-fit: contain; /*определяет как содержимое img заполняет контейнер относительно его ширины и высоты*/
+}
+.product-card__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /*это прописываем чтобы кнопка всегда была внизу карточки*/
+    flex-basis: 100%; /*размер доступного пространства элемента*/
+    padding: 15px;
+}
+.product-card__body-top {
+    margin-bottom: 22px;
+}
+.product-card__title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 21px;
+    font-weight: 700;
+}
+.product-card__price {
+    font-size: 18px;
+    color: var(--price-color);
+    font-weight: 700;
+}
+.product-card__btn {
+    width: 100%; /*чтобы кнопка была во весь размер картинки*/
+}
+
+/*--------------Блок карточка товара (большая)--------------*/
+
+.product-card_big {
+    border: none; /*убрать рамки*/
+    position: relative;
+    height: 350px;
+}
+.product-card__img_big {
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover; /*определяет как содержимое img заполняет контейнер относительно его ширины и высоты*/
+}
+.product-card__body_big {
+    position: absolute;
+    bottom: 0; /*устанавливает положение нижнего края элемента, применяется со свойством position (без учета рамок и отступов)*/
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px; /*в нижней половине карточки темная полоса с прозрачностью (0.5-50%) */
+    color: white;
+    align-items: flex-start; /*элементы идут вначале оси*/
+}
+.product-card__price_big {
+    color: white;
+}
+.product-card__btn_big {
+    width: initial; /*устанавливает свойство элемента по умолчанию*/
+}
+
+/*--------------Контейнер--------------*/
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px 15px;
+}
+
+/*--------------Шапка--------------*/
+
+.header {
+    background-color: var(--black-color);
+}
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: opacity var(--transition-duration), background-color var(--transition-duration);
+    outline: none;
+}
+.header__logo {
+    display: block;
+    padding: 22px;
+    background-color: var(--base-color);
+}
+.header__logo:focus-visible {
+    opacity: 0.8; /*изменение прозрачности ссылки*/
+}
+.header__logo:hover {
+    background-color: var(--base-color-hover);
+}
+.header__logo:active {
+    background-color: var(--base-color-active);
+}
+
+/*--------------Блок hero--------------*/
+
+.hero__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px; /*расстояние между текстом и картинкой*/
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.hero__container::after /*Псевдо элемент before (встает перед контентом), after (встает после контента)*/ {
+    content: "";
+    display: block;
+    flex-basis: 470px;
+    height: 375px;
+    background-image: url(../img/hero.svg);
+    background-size: contain;
+    background-repeat: no-repeat; /*чтобы было только 1 изображение в блоке*/
+    background-position: center;
+}
+.hero__content {
+    flex-basis: 480px;
+}
+.hero__title {
+    font-size: 34px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+.hero__desc {
+    max-width: 360px;
+    margin-bottom: 48px;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+/*--------------Блок callback--------------*/
+
+.callback {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /*потому что 2 колонки*/
+}
+
+.callback::before {
+    content: "";
+    display: block;
+    background-image: url(../img/callback-left.jpg);
+    background-size: cover; /*свойство чтобы фоновое изображение полностью покрывало заданный блок*/
+    background-position: center;
+}
+.callback__right {
+    padding: 72px 50px;
+    background-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.5) 100%),
+        url(../img/callback-right.jpg); /*перед url() вставляем генератор затемнения картинки(скопировано с интернета) см.ниже*/
+    background-size: cover; /*свойство чтобы фоновое изображение полностью покрывало заданный блок*/
+    background-position: center;
+    color: white;
+    /*чтобы сделать затемнение картинки как на правом блоке ищем в интернете (генератор градиента css (cssgradient.io)), делаем настройки и вставляем в background-image */
+}
+.callback__desk {
+    max-width: 424px;
+    font-size: 20px;
+    margin-bottom: 26px;
+    margin-top: 0;
+}
+
+/*--------------Блок catalog--------------*/
+
+.catalog {
+    padding: 80px 0;
+}
+.catalog__subtitle {
+    margin-bottom: 60px;
+}
+.catalog__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /*4 колонки, 1fr-одинакового размера*/
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /*отключение точек в ul*/
+}
+.catalog__item_big {
+    grid-column: span 2; /*прописываем чтобы большие карточки занимали 2 колонки*/
+}
+.catalog__card {
+    height: 100%; /*прописываем чтобы при увелечении текста в карточке размер менялся у всех и все были одинакового размера*/
+}
+
+/*--------------Блок footer--------------*/
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 23px 15px;
+    background-color: var(--border-color);
+}
+.footer__logo {
+    opacity: 50%; /*прозрачность логотипа*/
+}
+
+/*--------------Адаптив для телефона (перестроение при менее 920px)--------------*/
+
+@media (max-width: 920px) {
+    .callback-form {
+        flex-direction: column; /*в мобильной версии строка и кнопка идут не вряд, а друг под другом*/
+    }
+    .callback-form__inp {
+        flex-basis: initial; /*строка размером initial-это по умолчанию*/
+    }
+    .product-card__img {
+        height: 90px;
+    }
+    .product-card__body {
+        padding: 10px;
+    }
+    .product-card__body-top {
+        margin-bottom: 22px;
+    }
+    .product-card__title {
+        font-size: 14px;
+    }
+    .product-card__price {
+        font-size: 14px;
+    }
+    .product-card__img_big {
+        height: 100%;
+    }
+    .product-card__btn_big {
+        width: 100%;
+    }
+
+    /*--------------шапка--------------*/
+
+    .header__container {
+        display: block;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .header__logo {
+        display: flex;
+        justify-content: center;
+    }
+    .header__menu {
+        padding: 20px 0px;
+        width: 100%;
+        overflow-x: scroll; /*прописываем чтобы можно было скролить (листать) шапку по горизонтали на телефоне*/
+    }
+    .header__menu-list {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: fit-content; /*прописываем чтобы выровнить блок с неизвестной величиной (чтобы сжималось до минимальной величины, без переноса)*/
+    }
+
+    /*--------------Блок hero--------------*/
+
+    .hero__container {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .hero__container::after {
+        display: none;
+    }
+    .hero__title {
+        font-size: 28px;
+    }
+
+    /*--------------Блок callback--------------*/
+
+    .callback {
+        display: block;
+        grid-template-columns: 1fr 1fr; /*потому что 2 колонки*/
+    }
+    .callback::before {
+        display: none;
+    }
+    .callback__right {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /*--------------Блок catalog--------------*/
+
+    .catalog {
+        padding: 40px 0;
+    }
+    .catalog__subtitle {
+        margin-bottom: 30px;
+    }
+    .catalog__list {
+        grid-template-columns: repeat(2, 1fr); /*4 колонки, 1fr-одинакового размера*/
+        gap: 10px;
+    }
+}
